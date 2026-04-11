@@ -20,13 +20,13 @@ const Home = () => {
 
     return (
         <div className="flex-1 container mx-auto relative">
-            <div className="w-full flex flex-col gap-4 items-center justify-center p-20">
+            <div className="w-full flex flex-col gap-4 items-center justify-center sm:p-20 p-8">
                 <div className="text-white py-1 text-sm font-medium px-3 border border-white/50 rounded-full flex gap-2 items-center justify-center">
                     <Link to={"/explore"}>1000+ Mice Available</Link>
                     <MoveRight size={15}/>
                 </div> 
-                <h1 className="text-white text-8xl font-bold text-center a">Find and Compare <br /> Gaming Mice</h1>
-                <p className="text-white text-lg text-center font-medium mt-4 max-w-2xl">Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for your grip and playstyle.</p>
+                <h1 className="text-white sm:text-8xl text-4xl font-bold text-center">Find and Compare <br /> Gaming Mice</h1>
+                <p className="text-white text-sm sm:text-lg text-center font-medium  w-full sm:max-w-2xl">Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for your grip and playstyle.</p>
                 <div className="flex items-center gap-3">
                     {buttons.map((button) => (
                         <Button key={button.href} variant="default">
@@ -38,7 +38,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[200px] sm:size-[630px] object-cover" />
+            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[350px] sm:size-[630px] object-cover" />
             {/* <img src={hitscan} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[800px] object-contain" /> */}
         </div>
     )

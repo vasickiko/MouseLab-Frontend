@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <>
     {/* BANNER */}
-    <div className="w-full flex gap-2 items-center justify-center text-white text-sm font-semibold p-1.5 bg-gradient-to-r from-pink-600 to-orange-600">
+    <div className="w-full flex gap-2 items-center justify-center text-white text-xs sm:text-sm font-semibold p-1.5 bg-gradient-to-r from-pink-600 to-orange-600">
       <p>🔥WLMouse Beast X Mini 30% off only today! Hurry up!🔥</p>
     </div>
     {/* BANNER */}
@@ -49,7 +49,7 @@ const Navbar = () => {
             <h1 className="text-2xl text-white font-bold cursor-pointer" onClick={()=>{navigate("/")}}>MouseLab</h1>
           </div>
 
-          <nav className="flex items-center gap-4">
+          <nav className="hidden sm:flex items-center gap-4">
             {navItems.map((item) => (
               <Button key={item.href} variant="defaultv2">
                 <Link to={item.href} className="text-white font-medium flex items-center gap-1.5 w-full">
