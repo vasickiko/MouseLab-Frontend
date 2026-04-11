@@ -4,7 +4,6 @@ import { Button } from "../components/ui/button"
 import { Focus, FoldHorizontal, MoveRight } from "lucide-react"
 
 import finalMouse from "../assets/35236_3.png"
-import hitscan from "../assets/37854_2 (1).png"
 
 type ButtonItem = {
     label: string
