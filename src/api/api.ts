@@ -1,13 +1,17 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://mouselab-backends.onrender.com",
-})
+  baseURL: "https://mouselab-backends.onrender.com",
+});
 
 api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-})
+  const token = localStorage.getItem("token");
 
-export default api
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
+export default api;

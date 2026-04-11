@@ -240,9 +240,10 @@ const AddMouse = () => {
 
       setMessage("Mouse created successfully.");
       setForm(INITIAL_FORM);
-    } catch (error) {
-      console.log(error);
-      setMessage("Something went wrong while creating the mouse.");
+    } catch (error: any) {
+      console.log("ADD MOUSE ERROR:", error);
+      console.log("SERVER RESPONSE:", error?.response?.data);
+      setMessage(error?.response?.data?.message || "Something went wrong while creating the mouse.");
     } finally {
       setLoading(false);
     }
