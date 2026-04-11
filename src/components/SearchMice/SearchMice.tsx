@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import { useCompare, type Mouse } from "../../Context/CompareContext"
 import api from "../../api/api"
-import { ChevronLeft, X } from "lucide-react"
+import { ChevronLeft } from "lucide-react"
 
 const MouseSearch = () => {
   const navigate = useNavigate()
