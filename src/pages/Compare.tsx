@@ -2,8 +2,8 @@
 import { useCompare } from "../Context/CompareContext"
 import { AudioWaveform, Battery, Cpu, Crosshair, Download, Egg, GitCommitVertical, Hand, LocateFixed, Maximize, Minimize2, MouseLeft, Palette, Plus, ShoppingBag, Squircle, Weight, Wifi, Wind, X, Zap } from "lucide-react"
 
-const LABEL_WIDTH = "w-[280px]"
-const COL_WIDTH = "w-[280px]"
+const LABEL_WIDTH = "sm:w-[280px] w-[230px]"
+const COL_WIDTH = "sm:w-[280px] w-[200px]"
 const GAP = "gap-0"
 
 import amazon from "../assets/affiliateLinks/amazon-logo.jpg"
@@ -13,7 +13,7 @@ const Row = ({label, values, metric, icon}:{label: string, metric?: string, valu
   return (
     <div className="flex gap-0">
 
-      <div className={`${LABEL_WIDTH} flex-shrink-0 h-14 px-4 flex items-center justify-between border-b border-r border-white/10 bg-white/10 `}>
+      <div className={`${LABEL_WIDTH} flex-shrink-0 h-14 sm:text-base text-sm px-4 flex items-center justify-between border-b border-r border-white/10 bg-white/10 `}>
         <div className="flex items-center justify-center gap-1.5">
           {icon && icon}
           <p className="capitalize font-medium">{label}</p>
@@ -26,7 +26,7 @@ const Row = ({label, values, metric, icon}:{label: string, metric?: string, valu
 
       <div className={`flex ${GAP}`}>
         {values.map((value, index) => (
-          <div key={index} className={`${COL_WIDTH} font-medium capitalize border-b border-r border-white/10 flex-shrink-0 h-14 px-4 flex items-center justify-center text-center bg-black bg-white/5`}>
+          <div key={index} className={`${COL_WIDTH} font-medium sm:text-base text-sm capitalize border-b border-r border-white/10 flex-shrink-0 h-14 px-4 flex items-center justify-center text-center bg-black bg-white/5`}>
             {value || "-"}
             {label === "Weight" && <p className="lowercase">g</p>}
             
@@ -61,8 +61,8 @@ const LinkRow = ({label, values, icon}: {label: string, values: { amazon?: strin
                     rel="noopener noreferrer"
                     className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
                   >
-                    <img src={amazon} alt="Amazon" className="w-7" />
-                    <p className="font-semibold text-sm text-black">Amazon</p>
+                    <img src={amazon} alt="Amazon" className="sm:w-7 w-6" />
+                    <p className="font-semibold sm:text-sm text-xs text-black">Amazon</p>
                   </a>
                 )}
 
@@ -73,8 +73,8 @@ const LinkRow = ({label, values, icon}: {label: string, values: { amazon?: strin
                     rel="noopener noreferrer"
                     className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
                   >
-                    <img src={aliexpress} alt="AliExpress" className="w-6" />
-                    <p className="font-semibold text-sm text-black">AliExpress</p>
+                    <img src={aliexpress} alt="AliExpress" className="sm:w-6 w-5" />
+                    <p className="font-semibold sm:text-sm text-xs text-black">AliExpress</p>
                   </a>
                 )}
               </div>
@@ -107,7 +107,7 @@ const ColorRow = ({ label, values, icon }: { label: string, values: string[][], 
                 {colors.map((color, i) => (
                   <div
                     key={i}
-                    className="w-6 h-6 rounded-full border border-white/50"
+                    className="sm:w-6 w-5 h-5 sm:h-6 rounded-full border border-white/50"
                     style={{ backgroundColor: color }}
                   />
                 ))}
@@ -137,14 +137,14 @@ const Compare = () => {
             <div className={`${LABEL_WIDTH} flex-shrink-0`} />
 
             {miceToCompare.map((mouse) => (       
-              <div key={mouse._id} className={`${COL_WIDTH} border border-white/10 border-b-0 flex-shrink-0 rounded-xl rounded-b-none overflow-hidden bg-white/10`}>
+              <div key={mouse._id} className={`${COL_WIDTH} border h-fit border-white/10 border-b-0 flex-shrink-0 rounded-xl rounded-b-none overflow-hidden bg-white/10`}>
                   
                 <div className="relative h-fit bg-white flex items-center justify-center">
                   <button onClick={() => removeMouse(mouse._id)} className="absolute top-2 right-2 text-black">
                     <X size={16} strokeWidth={2}/>
                   </button>
 
-                  <img src={mouse.image} alt={`${mouse.brand} ${mouse.model}`} className="h-[250px] object-contain"/>
+                  <img src={mouse.image} alt={`${mouse.brand} ${mouse.model}`} className="h-[250px]  object-contain"/>
                 </div>
 
                 <div className="p-3 text-center">
