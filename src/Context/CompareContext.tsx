@@ -30,7 +30,7 @@ export interface MouseFormData {
     trackingSpeed: string
     acceleration: string
   }
-  batteryMah: string
+  batteryMah?: string
   switches: string
   scrollWheel: string
   material: string
@@ -67,7 +67,7 @@ export interface Mouse {
     trackingSpeed: string
     acceleration: string
   }
-  batteryMah: string
+  batteryMah?: string
   switches: string
   scrollWheel: string
   material: string
