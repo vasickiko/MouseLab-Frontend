@@ -38,7 +38,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[350px] sm:size-[630px] object-cover" />
+            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[300px] sm:size-[630px] object-cover" />
             {/* <img src={hitscan} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[800px] object-contain" /> */}
         </div>
     )
