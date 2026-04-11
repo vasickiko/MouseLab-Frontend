@@ -45,7 +45,7 @@ const MouseSearch = () => {
   if (!isSearchOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-start justify-center overflow-x-hidden pt-20 sm:pt-44 px-4">
+    <div className="fixed inset-0 z-[1000] bg-black/70 backdrop-blur-md flex items-start justify-center overflow-x-hidden pt-20 sm:pt-44 px-4">
 
       <div className="w-full overflow-x-hidden max-w-2xl bg-[#1A1A1A] overflow-auto rounded-2xl p-3 border-4 border-[#535353] flex flex-col justify-center gap-3">
         
