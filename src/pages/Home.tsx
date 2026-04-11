@@ -26,7 +26,7 @@ const Home = () => {
                     <MoveRight size={15}/>
                 </div> 
                 <h1 className="text-white sm:text-8xl text-4xl font-bold text-center">Find and Compare <br /> Gaming Mice</h1>
-                <p className="text-white text-sm sm:text-lg text-center font-medium  w-full sm:max-w-2xl">Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for your grip and playstyle.</p>
+                <p className="text-white text-sm sm:text-lg text-center font-medium w-full sm:max-w-2xl">Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for your grip and playstyle.</p>
                 <div className="flex items-center gap-3">
                     {buttons.map((button) => (
                         <Button key={button.href} variant="default">
@@ -38,7 +38,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[300px] sm:size-[630px] object-cover" />
+            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 max-sm:size-[350px] max-md:size-[450px] sm:size-[630px] object-cover" />
             {/* <img src={hitscan} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[800px] object-contain" /> */}
         </div>
     )
