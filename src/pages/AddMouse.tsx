@@ -236,7 +236,7 @@ const AddMouse = () => {
       formData.append("amazon", form.affiliateLink.amazon);
       formData.append("aliExpress", form.affiliateLink.aliExpress);
 
-      await api.post("http://localhost:5000/mice", formData);
+      await api.post("/mice", formData);
 
       setMessage("Mouse created successfully.");
       setForm(INITIAL_FORM);
