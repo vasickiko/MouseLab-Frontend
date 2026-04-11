@@ -24,7 +24,7 @@ const Navbar = () => {
 
   function handleLogout() {
     localStorage.removeItem("token")
-    navigate("/login-my-secret-panel")
+    navigate("/poooka")
   }
 
 

@@ -25,7 +25,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="compare" element={<Compare />} />
         <Route path="finder" element={<MouseFinder/>} />
-        <Route path="add" element={<Login />} />
+        <Route path="poooka" element={<Login />} />
         <Route
           path="add-mouse"
           element={
