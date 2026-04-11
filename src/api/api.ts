@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://mouselab-frontend.netlify.app/",
+    baseURL: "https://mouselab-backends.onrender.com/",
 })
 
 api.interceptors.request.use((config) => {
