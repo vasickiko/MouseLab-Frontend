@@ -2,7 +2,7 @@
 import { useCompare } from "../Context/CompareContext"
 import { AudioWaveform, Battery, Cpu, Crosshair, Download, Egg, GitCommitVertical, Hand, LocateFixed, Maximize, Minimize2, MouseLeft, Palette, Plus, ShoppingBag, Squircle, Weight, Wifi, Wind, X, Zap } from "lucide-react"
 
-const LABEL_WIDTH = "sm:w-[280px] w-[230px]"
+const LABEL_WIDTH = "sm:w-[280px] w-[215px]"
 const COL_WIDTH = "sm:w-[280px] w-[200px]"
 const GAP = "gap-0"
 
@@ -144,7 +144,7 @@ const Compare = () => {
                     <X size={16} strokeWidth={2}/>
                   </button>
 
-                  <img src={mouse.image} alt={`${mouse.brand} ${mouse.model}`} className="h-[250px]  object-contain"/>
+                  <img src={mouse.image} alt={`${mouse.brand} ${mouse.model}`} className="sm:h-[250px] h-[190px]  object-contain"/>
                 </div>
 
                 <div className="p-3 text-center">
@@ -154,8 +154,8 @@ const Compare = () => {
                 </div>
             ))}
 
-            <div onClick={openSearch} className="min-h-[300px] min-w-[300px] flex-shrink-0 p-8 bg-transparent flex items-center justify-center cursor-pointer transition">
-              <div className="border rounded-lg border-white/10 border-dashed w-full h-full flex flex-col items-center justify-center">
+            <div onClick={openSearch} className="sm:min-h-[300px] min-h-[250px] sm:min-w-[300px] min-w-[250px] flex-shrink-0 p-8 bg-transparent flex items-center justify-center cursor-pointer transition">
+              <div className="border rounded-lg border-white/30 border-dashed w-full h-full flex flex-col items-center justify-center">
                 <Plus size={30} strokeWidth={2.5}/>
                 <p>Compare</p>
               </div>
@@ -291,7 +291,7 @@ const Compare = () => {
               />
 
               <Row
-                label="Scroll Wheel Encoder"
+                label="SWheel Encoder"
                 values={miceToCompare.map((m) => m.scrollWheel)}
                 icon={<GitCommitVertical size={15} strokeWidth={2.5} />}
               />
