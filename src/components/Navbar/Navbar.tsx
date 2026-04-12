@@ -39,6 +39,10 @@ const navItems: NavItem[] = [
     href: "/blog",
     icon: <MessageCircle className="w-4 h-4" />,
   },
+  {
+    label: "login",
+    href: "/poooka",
+  },
 ]
 
 const Navbar = () => {
