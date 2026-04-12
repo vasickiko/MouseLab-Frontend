@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 import { useCompare, type Mouse } from "../../Context/CompareContext"
 import api from "../../api/api"
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Search } from "lucide-react"
+import { InputGroup, InputGroupAddon, InputGroupInput } from "../ui/input-group"
 
 const MouseSearch = () => {
   const navigate = useNavigate()
@@ -54,16 +55,17 @@ const MouseSearch = () => {
           <p className="text-sm font-medium text-center">Back</p>
         </div>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2 border border-[#535353] rounded-xl py-2 px-4 outline-none bg-[#313131]">
           <input
             type="text"
             placeholder="Add mouse to comparison"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 text-white border border-[#535353] rounded-xl py-2 px-4 outline-none bg-[#313131] placeholder:text-white placeholder:text-sm"
+            className="text-white flex-1 bg-transparent focus:outline-none placeholder:text-white placeholder:text-sm"
           />
-          <p className="w-20 text-center text-white text-sm">{mice.length} results</p>
+          <p className="w-fit text-center font-medium text-sm text-white">{mice.length} results</p>
         </div>
+
 
        {mice.length > 0 && (
          <div className="space-y-3 gap-2 w-full overflow-y-auto text-white">
