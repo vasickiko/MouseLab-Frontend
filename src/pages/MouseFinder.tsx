@@ -31,7 +31,7 @@ type Option = {
   label: string;
   description?: string;
   emoji?: string;
-  image?: string;
+  image?: any;
 };
 
 type Question = {
