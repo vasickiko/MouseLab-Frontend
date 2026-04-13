@@ -61,7 +61,7 @@ const MouseSearch = () => {
             placeholder="Add mice to compare"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="text-white flex-1 bg-transparent focus:outline-none placeholder:text-white placeholder:text-sm"
+            className="text-white w-full bg-transparent  focus:outline-none placeholder:text-white placeholder:text-sm"
           />
             <div className="w-fit flex gap-1 text-xs font-medium text-white items-center justify-center">
               <p>{mice.length}</p>  
@@ -82,7 +82,7 @@ const MouseSearch = () => {
               <img
                 src={mouse.image}
                 alt={`${mouse.brand} ${mouse.model}`}
-                className="w-20 object-contain rounded-lg"
+                className="w-20 object-contain rounded-lg bg-white"
               />
 
               <div>

@@ -7,6 +7,8 @@ type ShapeCategory = "symmetrical" | "asymmetrical";
 type GripStyle = "palm" | "claw" | "aggressive claw" | "relaxed claw" | "fingertip";
 type Connectivity = "wired" | "wireless";
 
+import type { MouseColorVariant } from "../Context/CompareContext"
+
 interface MouseFormData {
   image: File | null;
   brand: string;
@@ -36,7 +38,7 @@ interface MouseFormData {
   scrollWheel: string;
   material: string;
   coating: boolean;
-  color: string[];
+  colors: MouseColorVariant[];
   affiliateLink: {
     amazon: string;
     aliExpress: string;
@@ -72,7 +74,12 @@ const INITIAL_FORM: MouseFormData = {
   scrollWheel: "",
   material: "",
   coating: false,
-  color: [""],
+  colors: [
+    {
+      mode: "static",
+      values: [""],
+    },
+  ],
   affiliateLink: {
     amazon: "",
     aliExpress: "",
@@ -163,14 +170,41 @@ const AddMouse = () => {
     }));
   };
 
-  const handleColorChange = (index: number, value: string) => {
+  const handleColorModeChange = (index: number, mode: "static" | "ombre") => {
     setForm((prev) => {
-      const updatedColors = [...prev.color];
-      updatedColors[index] = value;
+      const updatedColors = [...prev.colors];
+
+      updatedColors[index] = {
+        mode,
+        values: mode === "ombre" ? ["", ""] : [updatedColors[index]?.values[0] || ""],
+      };
 
       return {
         ...prev,
-        color: updatedColors,
+        colors: updatedColors,
+      };
+    });
+  };
+
+  const handleColorValueChange = (
+    colorIndex: number,
+    valueIndex: number,
+    value: string
+  ) => {
+    setForm((prev) => {
+      const updatedColors = [...prev.colors];
+      const updatedValues = [...updatedColors[colorIndex].values];
+
+      updatedValues[valueIndex] = value;
+
+      updatedColors[colorIndex] = {
+        ...updatedColors[colorIndex],
+        values: updatedValues,
+      };
+
+      return {
+        ...prev,
+        colors: updatedColors,
       };
     });
   };
@@ -178,17 +212,28 @@ const AddMouse = () => {
   const handleAddColorSlot = () => {
     setForm((prev) => ({
       ...prev,
-      color: [...prev.color, ""],
+      colors: [
+        ...prev.colors,
+        {
+          mode: "static",
+          values: [""],
+        },
+      ],
     }));
   };
 
   const handleRemoveColorSlot = (index: number) => {
     setForm((prev) => ({
       ...prev,
-      color:
-        prev.color.length === 1
-          ? [""]
-          : prev.color.filter((_, i) => i !== index),
+      colors:
+        prev.colors.length === 1
+          ? [
+              {
+                mode: "static",
+                values: [""],
+              },
+            ]
+          : prev.colors.filter((_, i) => i !== index),
     }));
   };
 
@@ -231,7 +276,21 @@ const AddMouse = () => {
       formData.append("gripStyles", JSON.stringify(form.gripStyles));
       formData.append("software", form.software);
 
-      formData.append("colors", JSON.stringify(form.color.filter((item) => item.trim() !== "")))
+      formData.append(
+        "colors",
+        JSON.stringify(
+          form.colors.filter((color) => {
+            if (color.mode === "static") {
+              return color.values[0]?.trim() !== "";
+            }
+
+            return (
+              color.values[0]?.trim() !== "" &&
+              color.values[1]?.trim() !== ""
+            );
+          })
+        )
+      );
 
       formData.append("amazon", form.affiliateLink.amazon);
       formData.append("aliExpress", form.affiliateLink.aliExpress);
@@ -243,7 +302,10 @@ const AddMouse = () => {
     } catch (error: any) {
       console.log("ADD MOUSE ERROR:", error);
       console.log("SERVER RESPONSE:", error?.response?.data);
-      setMessage(error?.response?.data?.message || "Something went wrong while creating the mouse.");
+      setMessage(
+        error?.response?.data?.message ||
+          "Something went wrong while creating the mouse."
+      );
     } finally {
       setLoading(false);
     }
@@ -326,7 +388,7 @@ const AddMouse = () => {
             <option value="download">Download</option>
             <option value="web">Web</option>
           </select>
-          
+
           <input
             type="text"
             name="batteryLife"
@@ -340,28 +402,66 @@ const AddMouse = () => {
         <div className="space-y-3">
           <label className="block font-medium">Colors</label>
 
-          {form.color.map((singleColor, index) => (
-            <div key={index} className="flex gap-3 items-center">
+
+          {/* COLORS */}
+
+          {form.colors.map((colorItem, index) => (
+            <div key={index} className="space-y-3 border border-white/10 rounded-lg p-4">
+              <select
+                value={colorItem.mode}
+                onChange={(e) =>
+                  handleColorModeChange(index, e.target.value as "static" | "ombre")
+                }
+                className="p-3 rounded-lg text-black w-full"
+              >
+                <option value="static">Static</option>
+                <option value="ombre">Ombre</option>
+              </select>
+
               <input
                 type="text"
                 placeholder="Example: black or #000000"
-                value={singleColor}
-                onChange={(e) => handleColorChange(index, e.target.value)}
-                className="p-3 rounded-lg text-black flex-1"
+                value={colorItem.values[0] || ""}
+                onChange={(e) =>
+                  handleColorValueChange(index, 0, e.target.value)
+                }
+                className="p-3 rounded-lg text-black w-full"
               />
 
-              <div
-                className="w-10 h-10 rounded-lg border border-white/30"
-                style={{ backgroundColor: singleColor || "transparent" }}
-              />
+              {colorItem.mode === "ombre" && (
+                <input
+                  type="text"
+                  placeholder="Second ombre color"
+                  value={colorItem.values[1] || ""}
+                  onChange={(e) =>
+                    handleColorValueChange(index, 1, e.target.value)
+                  }
+                  className="p-3 rounded-lg text-black w-full"
+                />
+              )}
 
-              <button
-                type="button"
-                onClick={() => handleRemoveColorSlot(index)}
-                className="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700"
-              >
-                Remove
-              </button>
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 rounded-lg border border-white/30"
+                  style={
+                    colorItem.mode === "ombre"
+                      ? {
+                          background: `linear-gradient(135deg, ${colorItem.values[0] || "transparent"}, ${colorItem.values[1] || "transparent"})`,
+                        }
+                      : {
+                          backgroundColor: colorItem.values[0] || "transparent",
+                        }
+                  }
+                />
+
+                <button
+                  type="button"
+                  onClick={() => handleRemoveColorSlot(index)}
+                  className="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
 
@@ -373,6 +473,9 @@ const AddMouse = () => {
             Add another color
           </button>
         </div>
+
+
+          {/* COLORS */}
 
         <div className="grid gap-4 md:grid-cols-3">
           <input
@@ -462,7 +565,7 @@ const AddMouse = () => {
               />
               Claw
             </label>
-            
+
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -471,7 +574,7 @@ const AddMouse = () => {
               />
               Aggressive Claw
             </label>
-            
+
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"

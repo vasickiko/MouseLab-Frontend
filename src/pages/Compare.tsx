@@ -6,6 +6,8 @@ const LABEL_WIDTH = "sm:w-[280px] w-[215px]"
 const COL_WIDTH = "sm:w-[280px] w-[200px]"
 const GAP = "gap-0"
 
+import type { MouseColorVariant } from "../Context/CompareContext"
+
 import amazon from "../assets/affiliateLinks/amazon-logo.jpg"
 import aliexpress from "../assets/affiliateLinks/aliexpress-icon.jpg"
 
@@ -88,34 +90,53 @@ const LinkRow = ({label, values, icon}: {label: string, values: { amazon?: strin
   )
 }
 
-const ColorRow = ({ label, values, icon }: { label: string, values: string[][], icon?: React.ReactNode }) => {
+
+
+const ColorRow = ({
+  label,
+  values,
+  icon,
+}: {
+  label: string
+  values: MouseColorVariant[][]
+  icon?: React.ReactNode
+}) => {
   return (
     <div className="flex gap-0">
       <div className={`${LABEL_WIDTH} flex-shrink-0 min-h-14 px-4 py-3 flex items-center border-b border-r border-white/10 bg-white/10`}>
-        <div className="flex items-center justify-center gap-1.5">
-          {icon && icon}
+        <div className="flex items-center gap-1.5">
+          {icon}
           <p className="capitalize">{label}</p>
         </div>
       </div>
 
       <div className={`flex ${GAP}`}>
         {values.map((colors, index) => (
-          <div key={index} className={`${COL_WIDTH} border-b border-r border-white/10 flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-center bg-white/5`}>
-            
+          <div
+            key={index}
+            className={`${COL_WIDTH} border-b border-r border-white/10 flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-center bg-white/5`}
+          >
             {colors?.length ? (
-              <div className="flex gap-2 w-full flex-wrap justify-center">
+              <div className="flex gap-2 flex-wrap justify-center items-start">
                 {colors.map((color, i) => (
                   <div
                     key={i}
-                    className="sm:w-6 w-5 h-5 sm:h-6 rounded-full border border-white/50"
-                    style={{ backgroundColor: color }}
+                    className="sm:h-6 w-5 sm:w-6 h-5 rounded-full border border-white/50"
+                    style={
+                      color.mode === "ombre"
+                        ? {
+                            background: `linear-gradient(to bottom, ${color.values[0]}, ${color.values[1]})`,
+                          }
+                        : {
+                            backgroundColor: color.values[0],
+                          }
+                    }
                   />
                 ))}
               </div>
             ) : (
               "-"
             )}
-
           </div>
         ))}
       </div>

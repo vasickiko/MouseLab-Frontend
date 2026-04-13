@@ -5,6 +5,7 @@ type ShapeCategory = "symmetrical" | "asymmetrical"
 type GripStyle = "palm" | "claw" | "fingertip"
 type Connectivity = "wired" | "wireless"
 type Software = "web-based" | "desktop" | "Web and desktop"
+export type MouseColorVariant = { mode: "static" | "ombre", values: string[] }
 
 export interface MouseFormData {
   image: File | null
@@ -35,7 +36,7 @@ export interface MouseFormData {
   scrollWheel: string
   material: string
   coating: boolean
-  colors: string[]
+  colors: MouseColorVariant[]
   affiliateLink?: {
     amazon:string
     aliExpress:string
@@ -72,7 +73,7 @@ export interface Mouse {
   scrollWheel: string
   material: string
   coating: boolean
-  colors: string[]
+  colors: MouseColorVariant[]
   affiliateLink?: {
     amazon:string
     aliExpress:string
