@@ -2,6 +2,9 @@ import { ScanSearch } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+
 // Image imports
 import palm_grip_mouse from "../assets/findmouse/palmgrip.jpg";
 import claw_grip_mouse from "../assets/findmouse/clawgrip.jpg";
@@ -280,6 +283,13 @@ const MouseFinder = () => {
   const currentQuestion = activeQuestions[step];
   const selectedValue = currentQuestion ? answers[currentQuestion.id] : undefined;
   const progress = ((step + 1) / activeQuestions.length) * 100;
+   
+  function handleNext() {
+    if (!currentQuestion) return;
+    if (!answers[currentQuestion.id]) return;
+
+    setStep((prev) => prev + 1);
+  }
 
   function handleSelect(option: string) {
     if (!currentQuestion) return;
@@ -288,14 +298,11 @@ const MouseFinder = () => {
       ...prev,
       [currentQuestion.id]: option,
     }));
+
+    handleNext();
   }
 
-  function handleNext() {
-    if (!currentQuestion) return;
-    if (!answers[currentQuestion.id]) return;
-
-    setStep((prev) => prev + 1);
-  }
+ 
 
   function handleBack() {
     if (step === 0) return;
@@ -396,7 +403,7 @@ const MouseFinder = () => {
                   isSelected ? "border-white/20 bg-white/10 " : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20"
                 }`}
               >
-                <img src={option.image} alt={option.label} className="max-w-full h-full object-cover rounded-t-xl"/>
+                <LazyLoadImage src={option.image} alt={option.label} className="max-w-full h-full object-cover rounded-t-xl"/>
 
                 <div className="flex flex-col items-center justify-center p-5 gap-2">
                   <h2 className="text-xl font-semibold text-center">{option.label}</h2>
@@ -413,7 +420,6 @@ const MouseFinder = () => {
 
           <div className="flex sm:w-auto gap-1">
             <Button onClick={handleSkip} className="bg-transparent">Skip</Button>
-            <Button onClick={handleNext} disabled={!selectedValue}>Next Question</Button>
           </div>
         </div>
         
