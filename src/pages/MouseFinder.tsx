@@ -1,12 +1,4 @@
-import {
-  Hand,
-  Mouse,
-  Wifi,
-  Cable,
-  ChevronLeft,
-  ChevronRight,
-  ScanSearch,
-} from "lucide-react";
+import { ScanSearch } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 
