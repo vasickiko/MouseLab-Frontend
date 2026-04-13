@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { Button } from "../components/ui/button"
 import { Focus, FoldHorizontal, MoveRight } from "lucide-react"
 
-import finalMouse from "../assets/35236_3.png"
+import finalMouse from "../assets/33717_1.png"
 
 type ButtonItem = {
     label: string
@@ -38,7 +38,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 max-sm:size-[300px] max-md:size-[450px] sm:size-[630px] object-cover" />
+            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 max-sm:size-[270px] max-md:size-[450px] sm:size-[630px] object-cover" />
             {/* <img src={hitscan} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[800px] object-contain" /> */}
         </div>
     )

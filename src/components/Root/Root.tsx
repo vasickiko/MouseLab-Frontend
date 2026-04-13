@@ -10,7 +10,7 @@ const Root = () => {
       <Navbar />
       <MouseSearch />
       <Outlet />
-      <Footer/>
+      <Footer />
     </div>
   )
 }
