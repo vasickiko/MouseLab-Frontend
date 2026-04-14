@@ -3,15 +3,22 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 
 // Image imports
-import palm_grip_mouse from "../assets/findmouse/palmgrip.jpg";
-import claw_grip_mouse from "../assets/findmouse/clawgrip.jpg";
-import fingertip_grip_mouse from "../assets/findmouse/fingertip.jpg";
-import small_mouse from "../assets/findmouse/x2mini.jpg";
-import medium_mouse from "../assets/findmouse/x2 medium.jpg";
-import large_mouse from "../assets/findmouse/h2large.jpg";
-import true_fingertip_mouse from "../assets/findmouse/true ftip.jpg";
-import compact_fingertip_mouse from "../assets/findmouse/compact ftip.jpg";
-import larger_fingertip_mouse from "../assets/findmouse/larger ftip.jpg";
+import palm from "../assets/findmouse/palm.jpg"
+import claw from "../assets/findmouse/claw.jpg"
+import fingertip from "../assets/findmouse/ftip.jpg"
+
+import small from "../assets/findmouse/small.jpg"
+import medium from "../assets/findmouse/medium.jpg"
+import large from "../assets/findmouse/large.jpg"
+
+import asymm from "../assets/findmouse/asymm.jpg"
+import symm from "../assets/findmouse/symm.jpg"
+import nullShape from "../assets/findmouse/null.jpg"
+
+import ultralight from "../assets/findmouse/ultralight.jpg"
+import light from "../assets/findmouse/light.jpg"
+import balanced from "../assets/findmouse/balanced.jpg"
+
 
 type QuestionId =
   | "grip"
@@ -27,7 +34,7 @@ type Option = {
   value: string;
   label: string;
   description?: string;
-  emoji?: string;
+  identifier?: any;
   image?: string;
 };
 
@@ -59,19 +66,19 @@ const baseQuestions: Question[] = [
         value: "palm",
         label: "Palm Grip",
         description: "Your whole hand rests on the mouse",
-        image: palm_grip_mouse,
+        image: palm,
       },
       {
         value: "claw",
         label: "Claw Grip",
         description: "Arched fingers with partial palm contact",
-        image: claw_grip_mouse,
+        image: claw,
       },
       {
         value: "fingertip",
         label: "Fingertip Grip",
         description: "Only fingertips control the mouse",
-        image: fingertip_grip_mouse,
+        image: fingertip,
       },
     ],
   },
@@ -87,19 +94,21 @@ const normalQuestions: Question[] = [
         value: "small",
         label: "Small",
         description: "Compact and nimble",
-        image: small_mouse,
+        image: small,
+
       },
       {
         value: "medium",
         label: "Medium",
         description: "Balanced and safe option",
-        image: medium_mouse,
+        image: medium,
       },
       {
         value: "large",
         label: "Large",
         description: "More support and fuller feel",
-        image: large_mouse,
+        image: large,
+
       },
     ],
   },
@@ -116,19 +125,19 @@ const fingertipQuestions: Question[] = [
         value: "true_fingertip",
         label: "True Fingertip",
         description: "Very small shape with minimal palm contact",
-        image: true_fingertip_mouse,
+
       },
       {
         value: "compact_fingertip",
         label: "Compact",
         description: "Small and nimble, but still easier to control",
-        image: compact_fingertip_mouse,
+
       },
       {
         value: "balanced_fingertip",
         label: "Balanced",
         description: "A medium shape that works well for fingertip",
-        image: larger_fingertip_mouse,
+
       },
     ],
   },
@@ -144,19 +153,19 @@ const sharedQuestions: Question[] = [
         value: "symmetrical",
         label: "Symmetrical",
         description: "Balanced and versatile",
-        image: medium_mouse,
+        image: symm,
       },
       {
         value: "asymmetrical",
         label: "Ergonomic",
         description: "More natural hand support",
-        image: large_mouse,
+        image: asymm,
       },
       {
         value: "no_preference",
         label: "No Preference",
         description: "Anything works",
-        image: small_mouse,
+        image: nullShape,
       },
     ],
   },
@@ -168,20 +177,21 @@ const sharedQuestions: Question[] = [
       {
         value: "ultralight",
         label: "Ultralight",
-        description: "Fast and effortless",
-        image: small_mouse,
+        description: "30-45g",
+        image: ultralight,
       },
       {
-        value: "medium",
+        value: "light",
+        label: "Light",
+        description: "45-60g",
+        image: light,
+
+      },
+      {
+        value: "balanced",
         label: "Balanced",
-        description: "Mix of speed & control",
-        image: medium_mouse,
-      },
-      {
-        value: "heavy",
-        label: "Heavier",
-        description: "More stable feel",
-        image: large_mouse,
+        description: "60g+",
+        image: balanced,
       },
     ],
   },
@@ -194,19 +204,19 @@ const sharedQuestions: Question[] = [
         value: "wired",
         label: "Wired",
         description: "No charging, stable",
-        image: small_mouse,
+
       },
       {
         value: "wireless",
         label: "Wireless",
         description: "Freedom and clean setup",
-        image: medium_mouse,
+
       },
       {
         value: "no_preference",
         label: "No Preference",
         description: "Either is fine",
-        image: large_mouse,
+
       },
     ],
   },
@@ -222,13 +232,13 @@ const extraQuestions: Question[] = [
         value: "battery",
         label: "Long Battery",
         description: "Charge less often",
-        image: large_mouse,
+
       },
       {
         value: "lightweight",
         label: "Lower Weight",
         description: "Better performance feel",
-        image: small_mouse,
+
       },
     ],
   },
@@ -241,19 +251,19 @@ const extraQuestions: Question[] = [
         value: "solid",
         label: "Solid Shell",
         description: "Premium & sturdy",
-        image: large_mouse,
+
       },
       {
         value: "lightweight",
         label: "Lightweight Shell",
         description: "Focus on weight reduction",
-        image: small_mouse,
+
       },
       {
         value: "no_preference",
         label: "No Preference",
         description: "Doesn’t matter",
-        image: medium_mouse,
+
       },
     ],
   },
@@ -263,11 +273,7 @@ const MouseFinder = () => {
   const [answers, setAnswers] = useState<Answers>({});
   const [step, setStep] = useState(0);
 
-  let activeQuestions =
-    answers.grip === "fingertip"
-      ? [...baseQuestions, ...fingertipQuestions]
-      : [...baseQuestions, ...normalQuestions];
-
+  let activeQuestions = answers.grip === "fingertip" ? [...baseQuestions, ...fingertipQuestions] : [...baseQuestions, ...normalQuestions];
   activeQuestions = [...activeQuestions, ...sharedQuestions];
 
   if (answers.connectivity === "wireless") {
@@ -291,14 +297,15 @@ const MouseFinder = () => {
   function handleSelect(option: string) {
     if (!currentQuestion) return;
 
+    
+
     setAnswers((prev) => ({
       ...prev,
       [currentQuestion.id]: option,
     }));
-
     handleNext();
+    
   }
-
 
   function handleBack() {
     if (step === 0) return;
