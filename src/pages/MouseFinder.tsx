@@ -303,6 +303,7 @@ const MouseFinder = () => {
                     src={r.image}
                     alt=""
                     className="h-full object-contain  rounded-t-2xl "
+                    loading="lazy"
                   />
                 </div>
 
@@ -313,7 +314,7 @@ const MouseFinder = () => {
                 </div>
 
                <div className="p-2">
-                <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
+                <div className="rounded-xl bg-white/10 border py-2 px-3 flex flex-col gap-1 border-white/10">
                     <div className="flex items-center justify-between">
                       <p className="font-medium">Size</p>
                       <p className="text-sm text-white/70">{r.sizeCategory}</p>
@@ -343,7 +344,7 @@ const MouseFinder = () => {
 
           <div className="flex items-center justify-center gap-1">
             <Button className="bg-white/10" onClick={handleRestart}><RotateCcw />Start Again</Button>
-            <Button onClick={handleCompareAll}><FoldHorizontal />Compare All Side by Side</Button>
+            <Button onClick={handleCompareAll}><FoldHorizontal />Compare All</Button>
           </div>
           
 
@@ -385,7 +386,7 @@ const MouseFinder = () => {
                   isSelected ? "border-white/20 bg-white/10 " : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20"
                 }`}
               >
-                <img src={option.image} alt={option.label} className="max-w-full h-full object-cover rounded-t-2xl"/>
+                <img loading="lazy" src={option.image} alt={option.label} className="max-w-full h-full object-cover rounded-t-2xl"/>
 
                 <div className="flex flex-col items-center justify-center p-5 gap-2">
                   <h2 className="text-2xl font-semibold text-center">{option.label}</h2>
