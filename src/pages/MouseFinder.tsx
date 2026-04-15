@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 
 import api from "../api/api"
@@ -26,7 +25,7 @@ import trueftip from "../assets/findmouse/true ftip.jpg"
 import smallftip from "../assets/findmouse/small ftip.jpg"
 import balancedftip from "../assets/findmouse/balanced ftip.jpg"
 import { Button } from "../components/ui/button"
-import { FoldHorizontal, RotateCcw } from "lucide-react";
+import { FoldHorizontal, LoaderCircle, RotateCcw } from "lucide-react";
 
 
 type QuestionId =
@@ -212,6 +211,7 @@ const MouseFinder = () => {
   const [answers, setAnswers] = useState<Answers>({});
   const [step, setStep] = useState(0);
   const [result, setResult] = useState<{ recommended: Mouse[] } | null>(null);
+  const[loading, setLoading] = useState(false)
 
 
   let activeQuestions = answers.grip === "fingertip" ? [...baseQuestions, ...fingertipQuestions] : [...baseQuestions, ...normalQuestions];
@@ -222,19 +222,22 @@ const MouseFinder = () => {
   const selectedValue = currentQuestion ? answers[currentQuestion.id] : undefined;
   const progress = ((step + 1) / activeQuestions.length) * 100;
 
-  const getRecommendations = async () => {
+
+
+const getRecommendations = async () => {
   try {
+    setLoading(true);
     const res = await api.get("/recommend/mice", {
       params: answers,
     });
 
-    console.log(res.data)
-
     setResult(res.data);
   } catch (error) {
     console.error(error);
+  } finally {
+    setLoading(false);
   }
-  };
+};
 
   useEffect(() => {
     window.scrollTo({
@@ -282,6 +285,16 @@ const MouseFinder = () => {
     if(!result?.recommended) return
     selectMultipleMice(result.recommended)
     navigate ("/compare")
+  }
+
+  if(loading){
+    return (
+      <div className="flex-1 flex items-center justify-center">
+        <div className="rounded-lg text-xl font-medium flex text-white items-center p-5 gap-2 "> 
+          <LoaderCircle className="animate-spin animate-[spin_1.5s_linear_infinite]" size={50}/>
+        </div>
+      </div>
+    )
   }
 
   if (isFinished) {
