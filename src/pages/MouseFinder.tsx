@@ -291,7 +291,7 @@ const MouseFinder = () => {
                               
           <div className="flex flex-col items-center justify-center gap-2">
             <h1 className="text-2xl md:text-4xl font-bold">Search is over</h1>
-            <p className="text-white/60 text-sm md:text-base">Results {result?.recommended.length}</p>
+            <p className="text-white/60 text-base md:text-base">Here are {result?.recommended.length} recommendations for you</p>
           </div>                 
                         
           <div className="flex w-full flex-col sm:flex-row items-center gap-4">
@@ -302,7 +302,7 @@ const MouseFinder = () => {
                   <img
                     src={r.image}
                     alt=""
-                    className="h-full object-contain "
+                    className="h-full object-contain  rounded-t-2xl "
                   />
                 </div>
 
@@ -313,7 +313,7 @@ const MouseFinder = () => {
                 </div>
 
                <div className="p-2">
-                <div className="rounded-xl bg-white/10 border py-2 px-3 flex flex-col gap-1 border-white/10">
+                <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
                     <div className="flex items-center justify-between">
                       <p className="font-medium">Size</p>
                       <p className="text-sm text-white/70">{r.sizeCategory}</p>
