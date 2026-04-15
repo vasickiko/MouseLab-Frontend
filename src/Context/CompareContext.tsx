@@ -86,6 +86,7 @@ interface CompareContextType {
   openSearch: () => void
   closeSearch: () => void
   selectMouse: (mouse: Mouse) => void
+  selectMultipleMice: (mice: Mouse[]) => void
   removeMouse: (mouseId: string) => void
 }
 
@@ -115,6 +116,16 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
     closeSearch()
   }
 
+  const selectMultipleMice = (mice: Mouse[]) => {
+  setMiceToCompare((prev) => {
+    const newMice = mice.filter(
+      (mouse) => !prev.some((m) => m._id === mouse._id)
+    )
+    return [...prev, ...newMice]
+  })
+}
+
+
   const removeMouse = (mouseId: string) => {
     setMiceToCompare((prev) => prev.filter((m) => m._id !== mouseId))
   }
@@ -127,6 +138,7 @@ export const CompareProvider = ({ children }: { children: ReactNode }) => {
         openSearch,
         closeSearch,
         selectMouse,
+        selectMultipleMice,
         removeMouse,
       }}
     >
