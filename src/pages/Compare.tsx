@@ -1,6 +1,6 @@
 
 import { useCompare } from "../Context/CompareContext"
-import { AudioWaveform, Battery, Cpu, Crosshair, Download, Egg, GitCommitVertical, Hand, LocateFixed, Maximize, Minimize2, MouseLeft, Palette, Plus, ShoppingBag, Squircle, Weight, Wifi, Wind, X, Zap } from "lucide-react"
+import { AudioWaveform, Battery, Cpu, Crosshair, Download, Egg, GitCommitVertical, Hand, LocateFixed, Maximize, Minimize2, MouseLeft, Palette, Plus, Squircle, Weight, Wifi, Wind, X, Zap } from "lucide-react"
 
 const LABEL_WIDTH = "sm:w-[280px] w-[215px]"
 const COL_WIDTH = "sm:w-[280px] w-[200px]"
