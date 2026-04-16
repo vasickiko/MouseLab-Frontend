@@ -24,7 +24,7 @@ const MouseSearch = () => {
       const res = await api.get("/get/mice", {
         params: { search }
       })
-      setMice(res.data)
+      setMice(res.data.mice)
     } catch (error) {
       console.error(error)
     }

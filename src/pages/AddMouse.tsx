@@ -4,8 +4,9 @@ import api from "../api/api";
 
 type SizeCategory = "small" | "medium" | "large";
 type ShapeCategory = "symmetrical" | "asymmetrical";
-type GripStyle = "palm" | "claw" | "aggressive claw" | "relaxed claw" | "fingertip";
+type GripStyle = "palm" | "claw" | "aggressive claw" | "relaxed claw" | "fingertip" | "true fingertip";
 type Connectivity = "wired" | "wireless";
+type Software = "web" | "download" | "web and download"
 
 import type { MouseColorVariant } from "../Context/CompareContext"
 
@@ -33,7 +34,7 @@ interface MouseFormData {
   };
   batteryMah: string;
   batteryLife: string;
-  software: string;
+  software: Software;
   switches: string;
   scrollWheel: string;
   material: string;
@@ -69,7 +70,7 @@ const INITIAL_FORM: MouseFormData = {
   },
   batteryMah: "",
   batteryLife: "",
-  software: "",
+  software: "web",
   switches: "",
   scrollWheel: "",
   material: "",
@@ -591,6 +592,15 @@ const AddMouse = () => {
                 onChange={() => handleGripStyleChange("fingertip")}
               />
               Fingertip
+            </label>
+
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={form.gripStyles.includes("true fingertip")}
+                onChange={() => handleGripStyleChange("true fingertip")}
+              />
+              True Fingertip
             </label>
           </div>
         </div>

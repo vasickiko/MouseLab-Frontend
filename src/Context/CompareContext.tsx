@@ -2,9 +2,9 @@ import { createContext, useContext, useState, type ReactNode } from "react"
 
 type SizeCategory = "small" | "medium" | "large"
 type ShapeCategory = "symmetrical" | "asymmetrical"
-type GripStyle = "palm" | "claw" | "fingertip"
+type GripStyle = "palm" | "claw" | "fingertip" | "true fingertip" | "aggressive claw" | "relaxed claw"
 type Connectivity = "wired" | "wireless"
-type Software = "web-based" | "desktop" | "Web and desktop"
+type Software = "web" | "download" | "web and download"
 export type MouseColorVariant = { mode: "static" | "ombre", values: string[] }
 
 export interface MouseFormData {

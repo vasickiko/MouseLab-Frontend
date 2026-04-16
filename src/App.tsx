@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import AddMouse from "./pages/AddMouse";
 import Compare from "./pages/Compare";
 import MouseFinder from "./pages/MouseFinder";
+import ExploreMice from "./pages/ExploreMice";
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const token = localStorage.getItem("token");
@@ -25,6 +26,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="compare" element={<Compare />} />
         <Route path="finder" element={<MouseFinder/>} />
+        <Route path="explore" element={<ExploreMice/>} />
         <Route path="poooka" element={<Login />} />
         <Route
           path="add-mouse"

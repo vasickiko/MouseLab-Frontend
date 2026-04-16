@@ -8,8 +8,8 @@ const GAP = "gap-0"
 
 import type { MouseColorVariant } from "../Context/CompareContext"
 
-import amazon from "../assets/affiliateLinks/amazon-logo.jpg"
-import aliexpress from "../assets/affiliateLinks/aliexpress-icon.jpg"
+// import amazon from "../assets/affiliateLinks/amazon-logo.jpg"
+// import aliexpress from "../assets/affiliateLinks/aliexpress-icon.jpg"
 
 const Row = ({label, values, metric, icon}:{label: string, metric?: string, values: (string | number)[], icon?: React.ReactNode}) => {
   return (
@@ -40,55 +40,55 @@ const Row = ({label, values, metric, icon}:{label: string, metric?: string, valu
   )
 }
 
-const LinkRow = ({label, values, icon}: {label: string, values: { amazon?: string, aliExpress?: string}[], icon?: React.ReactNode}) => {
-  return (
-    <div className="flex gap-0">
+// const LinkRow = ({label, values, icon}: {label: string, values: { amazon?: string, aliExpress?: string}[], icon?: React.ReactNode}) => {
+//   return (
+//     <div className="flex gap-0">
 
-      <div className={`${LABEL_WIDTH} flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-between border-b border-r border-white/10 bg-white/10`}>
-        <div className="flex items-center justify-center gap-1.5">
-          {icon && icon}
-          <p className="capitalize">{label}</p>
-        </div>
-      </div>
+//       <div className={`${LABEL_WIDTH} flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-between border-b border-r border-white/10 bg-white/10`}>
+//         <div className="flex items-center justify-center gap-1.5">
+//           {icon && icon}
+//           <p className="capitalize">{label}</p>
+//         </div>
+//       </div>
 
-      <div className={`flex ${GAP}`}>
-        {values.map((value, index) => (
-          <div key={index} className={`${COL_WIDTH} border-b border-r border-white/10 flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-center text-center bg-white/5`}>
-            {value?.amazon || value?.aliExpress ? (
-              <div className="w-full flex flex-col gap-2">
-                {value?.amazon && (
-                  <a
-                    href={value.amazon}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
-                  >
-                    <img src={amazon} alt="Amazon" className="sm:w-7 w-6" />
-                    <p className="font-semibold sm:text-sm text-xs text-black">Amazon</p>
-                  </a>
-                )}
+//       <div className={`flex ${GAP}`}>
+//         {values.map((value, index) => (
+//           <div key={index} className={`${COL_WIDTH} border-b border-r border-white/10 flex-shrink-0 min-h-14 px-4 py-3 flex items-center justify-center text-center bg-white/5`}>
+//             {value?.amazon || value?.aliExpress ? (
+//               <div className="w-full flex flex-col gap-2">
+//                 {value?.amazon && (
+//                   <a
+//                     href={value.amazon}
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                     className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
+//                   >
+//                     <img src={amazon} alt="Amazon" className="sm:w-7 w-6" />
+//                     <p className="font-semibold sm:text-sm text-xs text-black">Amazon</p>
+//                   </a>
+//                 )}
 
-                {value?.aliExpress && (
-                  <a
-                    href={value.aliExpress}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
-                  >
-                    <img src={aliexpress} alt="AliExpress" className="sm:w-6 w-5" />
-                    <p className="font-semibold sm:text-sm text-xs text-black">AliExpress</p>
-                  </a>
-                )}
-              </div>
-            ) : (
-              "-"
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+//                 {value?.aliExpress && (
+//                   <a
+//                     href={value.aliExpress}
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                     className="h-9 bg-white flex items-center justify-center rounded-xl gap-1"
+//                   >
+//                     <img src={aliexpress} alt="AliExpress" className="sm:w-6 w-5" />
+//                     <p className="font-semibold sm:text-sm text-xs text-black">AliExpress</p>
+//                   </a>
+//                 )}
+//               </div>
+//             ) : (
+//               "-"
+//             )}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   )
+// }
 
 
 
@@ -148,14 +148,14 @@ const Compare = () => {
   const { miceToCompare, openSearch, removeMouse } = useCompare()
 
   return (
-    <div className="container min-h-screen flex flex-col  space-y-8 mx-auto px-4 py-8 text-white">
+    <div className="container min-h-screen flex flex-col space-y-8 mx-auto px-4 py-8 text-white">
 
       <div className={`overflow-x-auto flex ${miceToCompare.length === 0 ? "justify-center" : ""}`}>
         <div className="min-w-max">
 
           <div className={`flex ${GAP}`}>
 
-            <div className={`${LABEL_WIDTH} flex-shrink-0`} />
+            <div className={`${miceToCompare.length === 0 ? "hidden" : ""} ${LABEL_WIDTH} flex-shrink-0`} />
 
             {miceToCompare.map((mouse) => (       
               <div key={mouse._id} className={`${COL_WIDTH} border h-fit border-white/10 border-b-0 flex-shrink-0 rounded-xl rounded-b-none overflow-hidden bg-white/10`}>
@@ -174,6 +174,8 @@ const Compare = () => {
                 </div>   
                 </div>
             ))}
+
+          
 
             <div onClick={openSearch} className="sm:min-h-[300px] min-h-[250px] sm:min-w-[300px] min-w-[250px] flex-shrink-0 p-8 bg-transparent flex items-center justify-center cursor-pointer transition">
               <div className="border rounded-lg border-white/30 border-dashed w-full h-full flex flex-col items-center justify-center">
@@ -329,11 +331,11 @@ const Compare = () => {
                 icon={<Squircle size={15} strokeWidth={2.5} />}
               />
 
-              <LinkRow
+              {/* <LinkRow
                 label="Where To Buy"
                 values={miceToCompare.map((m) => m.affiliateLink || {})}
                 icon={<ShoppingBag size={15} strokeWidth={2.5}/>}
-              />
+              /> */}
 
             </div>
           )}
