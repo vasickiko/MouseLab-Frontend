@@ -405,7 +405,7 @@ const ExploreMice = () => {
                   {mice.map((mouse) => (
                     <div
                       key={mouse._id}
-                      className="rounded-2xl border border-white/10 bg-white/10 overflow-hidden hover:bg-white/[0.13] transition"
+                      className="rounded-2xl border border-white/10 bg-white/10 overflow-hidden hover:bg-white/[0.13] hover:translate-y-[-2px] transition-all duration-600"
                     >
                       <div className="bg-white h-56 flex items-center justify-center p-4">
                         <img
@@ -421,9 +421,45 @@ const ExploreMice = () => {
                           <p className="font-semibold">{mouse.model}</p>
                         </div>
 
-                        <div className="w-full px-3 pb-3">
+                        
+
+                        {/* <div className="w-full px-3 pb-3">
                           <Button onClick={() => handleMouseClick(mouse)} className="w-full">Compare</Button>
-                        </div>
+                        </div> */}
+
+                        <div className="p-2 w-full">
+                <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
+                    <div className="flex items-center justify-between">
+                      <p className="font-medium text-sm">Size</p>
+                      <p className="text-sm text-white/70">{mouse.sizeCategory}</p>
+                    </div>
+                    <div className=" flex items-center justify-between">
+                      <p className="font-medium text-sm">Dimensions</p>
+                      <p className="text-sm text-white/70">{mouse.dimensions.width}x{mouse.dimensions.length}x{mouse.dimensions.height}</p>
+                    </div>
+                    <div className="  flex items-center justify-between">
+                      <p className="font-medium text-sm">Weight</p>
+                      <p className="text-sm text-white/70">{mouse.weight}g</p>
+                    </div>
+                    <div className="  flex items-center justify-between">
+                      <p className="font-medium text-sm">Battery</p>
+                      <p className="text-sm text-white/70">{mouse.batteryMah}mAh</p>
+                    </div>
+                    <div className="  flex items-center justify-between">
+                      <p className="font-medium text-sm">Sensor</p>
+                      <p className="text-sm text-white/70">{mouse.sensor?.split(' ')[1]} {mouse.sensor?.split(' ')[2]}</p>
+                    </div>
+                    <div className="  flex items-center justify-between">
+                      <p className="font-medium text-sm">Polling</p>
+                      <p className="text-sm text-white/70">{mouse.performance.pollingRate}Hz</p>
+                    </div>
+
+                  
+                    
+                </div>
+                <Button className="w-full mt-3" onClick={() => handleMouseClick(mouse)}>See more</Button>
+               </div>
+
                       </div>
                     </div>
                   ))}
