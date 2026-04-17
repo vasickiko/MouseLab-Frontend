@@ -1,5 +1,5 @@
 import ViperV4Pro from "./Posts/ViperV4Pro";
-import vv4proBanner from "../../assets/posts/vv4probanner.jpg";
+import vv4proBanner from "../../assets/posts/vv4probanner.webp";
 
 export const BlogPosts = [
     {

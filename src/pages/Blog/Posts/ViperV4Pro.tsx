@@ -1,4 +1,4 @@
-import heroImage from "../../../assets/posts/v4pro.png"
+import heroImage from "../../../assets/posts/v4pro.webp"
 import comparisonImage from "../../../assets/posts/vv4provv3pro.png"
 
 const ViperV4Pro = () => {
