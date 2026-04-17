@@ -148,7 +148,7 @@ const Compare = () => {
   const { miceToCompare, openSearch, removeMouse } = useCompare()
 
   return (
-    <div className="container min-h-screen flex flex-col space-y-8 mx-auto px-4 py-8 text-white">
+    <div className="container min-h-screen flex flex-col space-y-8 mx-auto px-6 py-8 text-white">
 
       <div className={`overflow-x-auto flex ${miceToCompare.length === 0 ? "justify-center" : ""}`}>
         <div className="min-w-max">
@@ -158,7 +158,7 @@ const Compare = () => {
             <div className={`${miceToCompare.length === 0 ? "hidden" : ""} ${LABEL_WIDTH} flex-shrink-0`} />
 
             {miceToCompare.map((mouse) => (       
-              <div key={mouse._id} className={`${COL_WIDTH} border h-fit border-white/10 border-b-0 flex-shrink-0 rounded-xl rounded-b-none overflow-hidden bg-white/10`}>
+              <div key={mouse._id} className={`${COL_WIDTH}  border h-fit border-white/10 border-b-0 flex-shrink-0 rounded-xl rounded-b-none overflow-hidden bg-white/10`}>
                   
                 <div className="relative h-fit bg-white flex items-center justify-center">
                   <button onClick={() => removeMouse(mouse._id)} className="absolute top-2 right-2 text-black">

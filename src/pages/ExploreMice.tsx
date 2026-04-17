@@ -31,6 +31,7 @@ const ExploreMice = () => {
   const [sort, setSort] = useState("recent")
   const [size, setSize] = useState("all")
   const [shape, setShape] = useState("all")
+  const [grip, setGrip] = useState("all")
   const [connectivity, setConnectivity] = useState("all")
   const [sensor, setSensor] = useState("")
   const [material, setMaterial] = useState("")
@@ -65,18 +66,6 @@ const ExploreMice = () => {
     return () => clearTimeout(timer)
   }, [searchInput])
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setShowFilters(true)
-      } else {
-        setShowFilters(false)
-      }
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
 
   useEffect(() => {
     const fetchMice = async () => {
@@ -94,6 +83,7 @@ const ExploreMice = () => {
         if (size !== "all") params.size = size
         if (shape !== "all") params.shape = shape
         if (connectivity !== "all") params.connectivity = connectivity
+        if (grip !== "all") params.grip = grip
         if (sensor) params.sensor = sensor
         if (material) params.material = material
         if (weightRange[0] > 0) params.weightMin = weightRange[0]
@@ -115,13 +105,14 @@ const ExploreMice = () => {
     }
 
     fetchMice()
-  }, [search, sort, brand, size, shape, connectivity, sensor, material, weightRange, page])
+  }, [search, sort, brand, size, shape, connectivity, sensor, material, weightRange, page, grip])
 
   const clearFilters = () => {
     setSearchInput("")
     setSearch("")
     setSort("recent")
     setBrand("all")
+    setGrip("all")
     setSize("all")
     setShape("all")
     setConnectivity("all")
@@ -136,6 +127,7 @@ const ExploreMice = () => {
     sort !== "recent" ? `Sort: ${sort}` : null,
     brand !== "all" ? `Brand: ${brand}` : null,
     size !== "all" ? `Size: ${size}` : null,
+    grip !== "all" ? `Grip: ${grip}` : null,
     shape !== "all" ? `Shape: ${shape}` : null,
     connectivity !== "all" ? `Connectivity: ${connectivity}` : null,
     sensor ? `Sensor: ${sensor}` : null,
@@ -148,11 +140,9 @@ const ExploreMice = () => {
     navigate("/compare")
   }
 
-  
-  
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8">
         <div className="flex flex-col w-full gap-6">
           <div className="flex flex-col lg:flex-row gap-10">
             <aside className="w-full lg:w-[280px] shrink-0">
@@ -250,6 +240,8 @@ const ExploreMice = () => {
                     </Select>
                   </div>
 
+                  
+
                   <div>
                     <label className="block text-sm text-white/70 text-sm mb-2">Shape</label>
                     <Select
@@ -267,6 +259,32 @@ const ExploreMice = () => {
                           <SelectItem value="all">All</SelectItem>
                           <SelectItem value="symmetrical">Symmetrical</SelectItem>
                           <SelectItem value="asymmetrical">Asymmetrical</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                   <div>
+                    <label className="block text-sm text-white/70 text-sm mb-2">Grip Type</label>
+                    <Select
+                      value={grip}
+                      onValueChange={(value) => {
+                        setGrip(value)
+                        setPage(1)
+                      }}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Sort by grip type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="all">All</SelectItem>
+                          <SelectItem value="palm">Palm</SelectItem>
+                          <SelectItem value="claw">Claw</SelectItem>
+                          <SelectItem value="aggressive claw">Aggressive Claw</SelectItem>
+                          <SelectItem value="relaxed claw">Relaxed Claw</SelectItem>
+                          <SelectItem value="fingertip">Fingertip</SelectItem>
+                          <SelectItem value="true fingertip">True Fingertip</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -405,7 +423,7 @@ const ExploreMice = () => {
                   {mice.map((mouse) => (
                     <div
                       key={mouse._id}
-                      className="rounded-2xl border border-white/10 bg-white/10 overflow-hidden hover:bg-white/[0.13] hover:translate-y-[-2px] transition-all duration-600"
+                      className="rounded-2xl border border-white/10 bg-white/10 overflow-hidden hover:bg-white/[0.13] transition-all duration-600"
                     >
                       <div className="bg-white h-56 flex items-center justify-center p-4">
                         <img
@@ -428,37 +446,34 @@ const ExploreMice = () => {
                         </div> */}
 
                         <div className="p-2 w-full">
-                <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
-                    <div className="flex items-center justify-between">
-                      <p className="font-medium text-sm">Size</p>
-                      <p className="text-sm text-white/70">{mouse.sizeCategory}</p>
-                    </div>
-                    <div className=" flex items-center justify-between">
-                      <p className="font-medium text-sm">Dimensions</p>
-                      <p className="text-sm text-white/70">{mouse.dimensions.width}x{mouse.dimensions.length}x{mouse.dimensions.height}</p>
-                    </div>
-                    <div className="  flex items-center justify-between">
-                      <p className="font-medium text-sm">Weight</p>
-                      <p className="text-sm text-white/70">{mouse.weight}g</p>
-                    </div>
-                    <div className="  flex items-center justify-between">
-                      <p className="font-medium text-sm">Battery</p>
-                      <p className="text-sm text-white/70">{mouse.batteryMah}mAh</p>
-                    </div>
-                    <div className="  flex items-center justify-between">
-                      <p className="font-medium text-sm">Sensor</p>
-                      <p className="text-sm text-white/70">{mouse.sensor?.split(' ')[1]} {mouse.sensor?.split(' ')[2]}</p>
-                    </div>
-                    <div className="  flex items-center justify-between">
-                      <p className="font-medium text-sm">Polling</p>
-                      <p className="text-sm text-white/70">{mouse.performance.pollingRate}Hz</p>
-                    </div>
-
-                  
-                    
-                </div>
-                <Button className="w-full mt-3" onClick={() => handleMouseClick(mouse)}>See more</Button>
-               </div>
+                            <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
+                                <div className="flex items-center justify-between">
+                                <p className="font-medium text-sm">Size</p>
+                                <p className="text-sm text-white/70">{mouse.sizeCategory}</p>
+                                </div>
+                                <div className=" flex items-center justify-between">
+                                <p className="font-medium text-sm">Dimensions</p>
+                                <p className="text-sm text-white/70">{mouse.dimensions.width}x{mouse.dimensions.length}x{mouse.dimensions.height}</p>
+                                </div>
+                                <div className="  flex items-center justify-between">
+                                <p className="font-medium text-sm">Weight</p>
+                                <p className="text-sm text-white/70">{mouse.weight}g</p>
+                                </div>
+                                <div className="  flex items-center justify-between">
+                                <p className="font-medium text-sm">Battery</p>
+                                <p className="text-sm text-white/70">{mouse.batteryMah}mAh</p>
+                                </div>
+                                <div className="  flex items-center justify-between">
+                                <p className="font-medium text-sm">Sensor</p>
+                                <p className="text-sm text-white/70">{mouse.sensor?.split(' ')[1]} {mouse.sensor?.split(' ')[2]}</p>
+                                </div>
+                                <div className="  flex items-center justify-between">
+                                <p className="font-medium text-sm">Polling</p>
+                                <p className="text-sm text-white/70">{mouse.performance.pollingRate}Hz</p>
+                                </div>                  
+                            </div>
+                            <Button className="w-full mt-3" onClick={() => handleMouseClick(mouse)}>See more</Button>
+                        </div>
 
                       </div>
                     </div>

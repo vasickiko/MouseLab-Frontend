@@ -320,7 +320,7 @@ const getRecommendations = async () => {
 
   if (isFinished) {
     return (
-      <div className="flex-1 text-white px-4 py-10 flex items-center justify-center">
+      <div className="flex-1 text-white px-6 py-10 flex items-center justify-center">
         <div className="w-full max-w-6xl rounded-2xl border flex flex-col items-center justify-center border-white/10 bg-white/10 backdrop-blur-xl p-5 space-y-10">
                               
           <div className="flex flex-col items-center justify-center gap-2">
@@ -348,7 +348,7 @@ const getRecommendations = async () => {
                 </div>
 
                <div className="p-2">
-                <div className="rounded-xl bg-white/10 border py-2 px-3 flex flex-col gap-1 border-white/10">
+                <div className="rounded-xl bg-white/5 border py-2 px-3 flex flex-col gap-1 border-white/10">
                     <div className="flex items-center justify-between">
                       <p className="font-medium">Size</p>
                       <p className="text-sm text-white/70">{r.sizeCategory}</p>
@@ -364,11 +364,10 @@ const getRecommendations = async () => {
                     <div className="  flex items-center justify-between">
                       <p className="font-medium">Weight</p>
                       <p className="text-sm text-white/70">{r.weight}g</p>
-                    </div>
-
-                    <Button onClick={() => handleSelectMouse(r)}>Add to comapre</Button>
-                    
+                    </div>          
                 </div>
+
+                <Button className="w-full mt-3" onClick={() => handleSelectMouse(r)}>Add to comapre</Button>
                   
                </div>
                
@@ -388,7 +387,7 @@ const getRecommendations = async () => {
   }
 
   return (
-    <div className="flex-1 text-white px-4 py-10 flex items-center justify-center">
+    <div className="flex-1 text-white px-6 py-10 flex items-center justify-center">
       <div className="w-full max-w-6xl rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl p-5 space-y-10">
         
         <div className="flex flex-col gap-2">
