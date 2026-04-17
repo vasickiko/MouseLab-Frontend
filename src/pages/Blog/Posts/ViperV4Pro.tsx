@@ -119,15 +119,15 @@ const ViperV4Pro = () => {
         <section className="flex flex-col gap-4">
           <h2 className="text-3xl font-semibold">Battery & Software</h2>
 
-          <p className="text-white text-lg leading-8">
+          <p className="text-white/80 text-lg leading-8">
             Battery life is honestly impressive. Getting up to around 180 hours at 1000Hz means you can go a long time without even thinking about charging it. For a mouse in this weight range, that’s a big plus.
           </p>
 
-          <p className="text-white text-lg leading-8">
+          <p className="text-white/80 text-lg leading-8">
             The web-based software is also something I really liked. No downloads, no background processes — you just open it in your browser and adjust what you need.
           </p>
 
-          <p className="text-white text-lg leading-8">
+          <p className="text-white/80 text-lg leading-8">
             It’s one of those small quality-of-life things that makes the overall experience feel cleaner and less cluttered, especially if you’re someone who switches between systems.
           </p>
         </section>
