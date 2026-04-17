@@ -186,7 +186,7 @@ const ExploreMice = () => {
                 </div>
 
                 <div
-                  className={`${showFilters ? "block mt-4" : "hidden"} lg:block rounded-2xl bg-white/10 border border-white/10 p-4 space-y-4`}
+                  className={`${showFilters ? "block" : "hidden"} lg:block mt-4 rounded-2xl bg-white/10 border border-white/10 p-4 space-y-4`}
                 >
                   <div>
                     <label className="block text-sm text-white/70 text-sm mb-2">
@@ -217,7 +217,7 @@ const ExploreMice = () => {
                     </Select>
                   </div>
 
-                  <div>
+                  <div >
                     <label className="block text-sm text-white/70 text-sm mb-2">Size</label>
                     <Select
                       value={size}
