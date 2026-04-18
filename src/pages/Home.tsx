@@ -19,28 +19,39 @@ const buttons: ButtonItem[] = [
 const Home = () => {
 
     return (
-        <div className="flex-1 container mx-auto relative">
-            <div className="w-full flex flex-col gap-4 items-center justify-center sm:p-20 p-8">
-                <div className="text-white py-1 text-sm font-medium px-3 border border-white/50 rounded-full flex gap-2 items-center justify-center">
-                    <Link to={"/explore"}>1000+ Mice Available</Link>
-                    <MoveRight size={15}/>
-                </div> 
-                <h1 className="text-white sm:text-8xl text-4xl font-bold text-center">Find and Compare <br /> Gaming Mice</h1>
-                <p className="text-white text-sm sm:text-lg text-center font-medium w-full sm:max-w-2xl">Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for you.</p>
-                <div className="flex items-center gap-3">
-                    {buttons.map((button) => (
-                        <Button key={button.href} variant="default">
-                            <Link to={button.href} className="w-full flex items-center gap-2">
-                                {button.icon}
-                                {button.label}
-                            </Link>
-                        </Button>
-                    ))}
-                </div>
-            </div>
-            <img src={finalMouse} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 max-sm:size-[320px] max-md:size-[450px] sm:size-[630px] object-cover" />
-            {/* <img src={hitscan} alt="Final Mouse" className="absolute left-1/2 -translate-x-1/2 bottom-0 size-[800px] object-contain" /> */}
-        </div>
+        <div className="flex-1 container mx-auto flex flex-col justify-between items-center min-h-[calc(100vh-120px)] px-4 sm:px-6">
+  <div className="w-full flex flex-col gap-4 items-center justify-center pt-10 sm:pt-16 lg:pt-20 xl:pt-24 pb-6">
+    <div className="text-white py-1 text-sm font-medium px-3 border border-white/50 rounded-full flex gap-2 items-center justify-center">
+      <Link to={"/explore"}>1000+ Mice Available</Link>
+      <MoveRight size={15} />
+    </div>
+
+    <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center leading-none">
+      Find and Compare <br /> Gaming Mice
+    </h1>
+
+    <p className="text-white text-sm sm:text-base lg:text-lg text-center font-medium w-full max-w-[700px]">
+      Compare mice side by side and find the differences that matter or answer a few questions and discover the best mouse for you.
+    </p>
+
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      {buttons.map((button) => (
+        <Button key={button.href} variant="default">
+          <Link to={button.href} className="w-full flex items-center gap-2">
+            {button.icon}
+            {button.label}
+          </Link>
+        </Button>
+      ))}
+    </div>
+  </div>
+
+  <img
+  src={finalMouse}
+  alt="Final Mouse"
+  className="2-1/2 sm:w-[300px] md:w-[340px] lg:w-[380px] xl:w-[420px] 2xl:w-[600px] h-auto mx-auto object-contain"
+/>
+</div>
     )
 }
 
