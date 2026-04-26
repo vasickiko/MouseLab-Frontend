@@ -299,7 +299,7 @@ const AddMouse = () => {
       await api.post("/mice", formData);
 
       setMessage("Mouse created successfully.");
-      setForm(INITIAL_FORM);
+      
     } catch (error: any) {
       console.log("ADD MOUSE ERROR:", error);
       console.log("SERVER RESPONSE:", error?.response?.data);

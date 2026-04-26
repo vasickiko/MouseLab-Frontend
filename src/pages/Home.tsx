@@ -20,11 +20,11 @@ const Home = () => {
 
     return (
         <div className="flex-1 container mx-auto flex flex-col justify-between items-center min-h-[calc(100vh-120px)] px-4 sm:px-6">
-  <div className="w-full flex flex-col gap-4 items-center justify-center pt-10 sm:pt-16 lg:pt-20 xl:pt-24 pb-6">
-    <div className="text-white py-1 text-sm font-medium px-3 border border-white/50 rounded-full flex gap-2 items-center justify-center">
-      <Link to={"/explore"}>1000+ Mice Available</Link>
-      <MoveRight size={15} />
-    </div>
+        <div className="w-full flex flex-col gap-4 items-center justify-center pt-10 sm:pt-16 lg:pt-20 xl:pt-24 pb-6">
+            <div className="text-white py-1 text-sm font-medium px-3 border border-white/50 rounded-full flex gap-2 items-center justify-center">
+            <Link to={"/explore"}>1000+ Mice Available</Link>
+            <MoveRight size={15} />
+            </div>
 
     <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center leading-none">
       Find and Compare <br /> Gaming Mice
